@@ -3,6 +3,9 @@ A faux 3d renderer for dungeon crawlers made with [Dragonruby Toolkit](https://d
 
 ![Screenshot](./dungeon_crawler.png)
 
+Controls
+WASD for movement
+Q/E for turning
 
 Uses https://dungeoncrawlers.org/tools/atlas_generator/
 
