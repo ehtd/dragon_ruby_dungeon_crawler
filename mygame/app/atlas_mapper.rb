@@ -6,7 +6,8 @@ class Tile
   # Initializes a Tile object using the provided tile_data hash and atlas_image.
   # @param tile_data [Hash] the tile data containing information about the tile.
   # @param atlas_image [Hash] the atlas image data containing information about the image.
-  def initialize(tile_data, atlas_image)
+  # @param height [Integer] the height of the intended screen. ie w:640, h:512
+  def initialize(tile_data, atlas_image, height)
     @type        = tile_data['type']
     @flipped     = tile_data['flipped']
     @tile        = tile_data['tile']
@@ -18,6 +19,7 @@ class Tile
     @source_y   = atlas_image[:h] - @coords["y"] - @coords["h"]
     @path       = atlas_image[:path]
     @atlas_image = atlas_image
+    @height    = height
   end
 
   # Generates a render hash for the tile
@@ -26,7 +28,7 @@ class Tile
     x -= @source_w if @flipped
     {
       x:                  x,
-      y:                  256 - @screen["y"] - @coords["h"],
+      y:                  @height - @screen["y"] - @coords["h"],
       w:                  @coords["w"],
       h:                  @coords["h"],
       source_x:           @source_x,
@@ -50,7 +52,8 @@ class Layer
   # Initializes a Layer object using the provided layer_data hash and atlas_image.
   # @param layer_data [Hash] the layer data containing information about the layer.
   # @param atlas_image [Hash] the atlas image data containing information about the image.
-  def initialize(layer_data, atlas_image)
+  # @param height [Integer] the height of the intended screen. ie w:640, h:512
+  def initialize(layer_data, atlas_image, height)
     @on          = layer_data['on']
     @index       = layer_data['index']
     @name        = layer_data['name']
@@ -63,7 +66,7 @@ class Layer
     # Store tiles in a hash keyed by "#{tile.type}_#{tile.tile['x']}_#{tile.tile['z']}".
     @tiles = {}
     layer_data['tiles'].each do |tile_data|
-      tile = Tile.new(tile_data, atlas_image)
+      tile = Tile.new(tile_data, atlas_image, height)
       key = "#{tile.type}_#{tile.tile['x']}_#{tile.tile['z']}"
       @tiles[key] = tile
     end
@@ -93,7 +96,7 @@ class Atlas
     @layers = {}
     atlas_data['layers'].each do |layer_data|
       key = layer_data['type'].to_sym
-      @layers[key] = Layer.new(layer_data, atlas_image)
+      @layers[key] = Layer.new(layer_data, atlas_image, @resolution['height'])
     end
   end
 

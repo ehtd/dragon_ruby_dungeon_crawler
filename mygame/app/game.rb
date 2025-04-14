@@ -33,7 +33,8 @@ class Game
   def init
     state.atlas ||= AtlasMapper.load_from_file("app/atlas_fog.json", { path: "sprites/untitled_fog.png", w: 528, h: 476 })
     state.faux_renderer ||= FauxRenderer.new(state.atlas)
-    state.offset ||= { x: 480, y: 232 }
+    # center x
+    state.offset ||= { x: 1280.div(2) - state.atlas.resolution['width'].div(2), y: 100 }
     state.map ||= [
       "############",
       "#...#..#####",
@@ -127,22 +128,22 @@ class Game
     outputs.primitives << {
       x: state.offset[:x],
       y: state.offset[:y],
-      w: 320,
-      h: 256,
+      w: state.atlas.resolution['width'],
+      h: state.atlas.resolution['height'],
       r: 255,
       primitive_marker: :border }
 
     outputs.primitives << {
       x: 0,
       y: 0,
-      w: 480,
+      w: state.offset[:x],
       h: 550,
       primitive_marker: :solid }
 
     outputs.primitives << {
-      x: 800,
+      x: state.offset[:x] + state.atlas.resolution['width'],
       y: 0,
-      w: 480,
+      w: state.offset[:x] + state.atlas.resolution['width'],
       h: 550,
       primitive_marker: :solid }
   end
