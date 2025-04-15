@@ -147,40 +147,40 @@ class FauxRenderer
     # render front wall z=-3
     [[-3, 3], [-2, 3], [-1, 3], [0, 3], [1, 3], [2, 3], [3, 3]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
-      to_render << wall_from_key("front_0_-3", offsets, x_offset) if is_wall?(new_position, game_map)
+      to_render << wall_from_key("front_0_-3", offsets, -x_offset) if is_wall?(new_position, game_map)
     end
 
     # render left side wall z=-2
-    [[-2, 2]].each do |x_offset, z_offset|
+    [[2, 2]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_-2_-2", offsets, 0) if is_wall?(new_position, game_map)
     end
-    [[-1, 2]].each do |x_offset, z_offset|
+    [[1, 2]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_-1_-2", offsets, 0) if is_wall?(new_position, game_map)
     end
     # render right side wall z=-2
-    [[2, 2]].each do |x_offset, z_offset|
+    [[-2, 2]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_2_-2", offsets, 0) if is_wall?(new_position, game_map)
     end
-    [[1, 2]].each do |x_offset, z_offset|
+    [[-1, 2]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_1_-2", offsets, 0) if is_wall?(new_position, game_map)
     end
     # render front wall z=-2
     [[-2, 2], [-1, 2], [0, 2], [1, 2], [2, 2]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
-      to_render << wall_from_key("front_0_-2", offsets, x_offset) if is_wall?(new_position, game_map)
+      to_render << wall_from_key("front_0_-2", offsets, -x_offset) if is_wall?(new_position, game_map)
     end
 
     # render left side wall z=-1
-    [[-1, 1]].each do |x_offset, z_offset|
+    [[1, 1]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_-1_-1", offsets, 0) if is_wall?(new_position, game_map)
     end
     # render right side wall z=-1
-    [[1, 1]].each do |x_offset, z_offset|
+    [[-1, 1]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_1_-1", offsets, 0) if is_wall?(new_position, game_map)
     end
@@ -188,17 +188,17 @@ class FauxRenderer
     # render front wall z=-1
     [[-1,1], [0, 1], [1, 1]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
-      to_render << wall_from_key("front_0_-1", offsets, x_offset) if is_wall?(new_position, game_map)
+      to_render << wall_from_key("front_0_-1", offsets, -x_offset) if is_wall?(new_position, game_map)
     end
 
     # render left side wall z=0
-    [[-1, 0]].each do |x_offset, z_offset|
+    [[1, 0]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_-1_0", offsets, 0) if is_wall?(new_position, game_map)
     end
 
     # render right side wall z=0
-    [[1, 0]].each do |x_offset, z_offset|
+    [[-1, 0]].each do |x_offset, z_offset|
       new_position = { x: player[:x] + x_offset, y: player[:y] + z_offset }
       to_render << wall_from_key("side_1_0", offsets, 0) if is_wall?(new_position, game_map)
     end
